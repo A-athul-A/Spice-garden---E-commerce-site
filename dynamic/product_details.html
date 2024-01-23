@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+  <div class="de-main" style="display: flex;justify-content: space-evenly;margin-top: 5rem;">
+  
+    {% for i in data %}
+
+    <div class="image-section">
+      <img src="{{i.product_image.url}}" alt="" style="width: 18rem;height: 24rem;">
+    </div>
+    <div class="details" style="color: white;">
+      <h2>{{i.product_name}}</h2> <hr>
+      <div class="dec" style="width: 450px;"> 
+        <p>{{i.product_description}}</p> <hr>
+      </div>
+      
+      <h5>Rs {{i.product_price}} for {{i.gram_of_product}} grams</h5> <hr>
+      <h6> Stock : {{i.stock}}</h6> <hr>
+      <button class="btn btn-success" id="dt-btn"><a href="{% url 'cartapp:add_cart' product_id=i.id %}">Add to cart</a></button>
+      <button class="btn btn-primary"><a href="{% url 'cartapp:add_buy' product_id=i.id %}">Buy now</a></button>
+    </div>
+   
+    {% endfor %}
+  </div>
+
+
+ 
+     <style>
+      hr{
+        color: white;
+      }
+       a{
+        text-decoration: none;
+        color: white;
+      }
+      img{
+        border-radius: 15px;
+      }
+     </style>
+{% endblock %}

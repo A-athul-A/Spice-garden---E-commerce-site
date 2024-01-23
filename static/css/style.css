@@ -1,0 +1,192 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+html{
+    height: 100%;
+    background-image: radial-gradient( circle 815px at 23.4% -21.8%,  rgba(9,29,85,1) 0.2%, rgba(0,0,0,1) 100.2% );
+    scroll-behavior: smooth;
+}
+
+
+ /* ------ navbar  ------*/
+#nav-txt {
+    color: white;
+ }
+
+.nav-item :hover{
+  background-color: yellowgreen;
+  border-radius: 10px;
+  height: max-content;
+  
+}
+
+
+  /* --------- main body ---------*/
+ .rows{
+ display: flex;
+ justify-content: space-evenly;
+ flex-wrap: wrap;
+}
+
+
+.image-section:hover {
+  -ms-transform: scale(1.5); 
+  -webkit-transform: scale(1.5); 
+  transform: scale(1.2);
+  border-radius: 20px;
+}
+
+
+.banner{
+    background-image: url(../images/banner.jpg);
+    height: 92vh;
+    background-size: cover;
+    
+    text-align: center;
+}
+
+.banner-txt h1{
+    padding-top: 18%;
+    font-family: 'Brush Script MT', cursive;
+    font-size: 95px;
+    -webkit-box-reflect: below -20px linear-gradient(transparent, rgba(0,0,0,.2));
+    color: rgb(231, 129, 12);
+    background: linear-gradient(to right, #f80000,#eb5f02, #dfab02); 
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+
+body{
+    background-image: radial-gradient( circle 815px at 23.4% -21.8%,  rgba(9,29,85,1) 0.2%, rgba(0,0,0,1) 100.2% );
+    background-repeat: no-repeat;
+}
+
+
+
+ /* --------- product card ----------*/
+.card-body{
+    background-color: rgb(236, 162, 64);
+}
+
+.de-main{
+    height: 90vh;
+}
+
+
+
+ /* ------ footer -------- */
+.site_footer{
+    /* background-color: #035a0f; */
+    background-image: linear-gradient( 288deg,  rgba(0,85,255,1) 1.5%, rgba(4,56,115,1) 91.6% );
+
+    height: 60px;
+    margin-top: auto;   
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: nowrap;
+    color: white;
+    padding-top: 10px;
+    
+
+}
+
+.site_footer a{
+  text-decoration: none;
+  color: white;
+}
+.site_footer a:hover{
+  color: rgb(230, 226, 8);
+}
+
+
+/* 
+@supports (background-clip: text) {
+    #brand {
+      background-image: linear-gradient(60deg, #E21143, #FFB03A);
+      background-clip: text;
+      color: transparent;
+      animation: color-change 3s infinite;
+    }
+  }
+  
+  @keyframes color-change {
+    /* 5% { color: rgb(155, 233, 30); } */
+    /* 25% { color: #FFB03A; } */
+    /* 50% { color: #cc580b; } */
+    /* 100% { color: red; } */
+  /* } */ 
+
+
+
+
+
+/* ------ logo -------*/
+
+  #brand
+  {
+     /* text-transform: uppercase; */
+    background-image: linear-gradient(
+      -225deg,
+      #f06e05 0%,
+      #53c512 29%,
+      #e61111 67%,
+      #fff800 100%
+    );
+    background-size: auto auto;
+    background-clip: border-box;
+    background-size: 200% auto;
+    color: #fff;
+    background-clip: text;
+    /* text-fill-color: transparent; */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: textclip 2s linear infinite;
+    display: inline-block;
+        /* font-size: 190px; */
+  }
+  
+  @keyframes textclip {
+    to {
+      background-position: 200% center;
+    }
+  }
+
+
+  /* ---- cart ---- */
+
+  .cart_table{
+    min-width: 400px;
+    font-size: 14px;
+}
+.cart_t_head{
+    font-weight: normal;
+    text-transform: uppercase;
+    letter-spacing:.2rem;
+    background-color: rgb(247, 234, 218)!important;
+}
+
+.custom_a{
+    text-decoration: none;
+}
+
+.custom_icon{
+    text-decoration: none;
+    color: dimgray!important;
+}
+
+.custom_btn{
+    margin-top: 5px;
+}
+
+.text_clr_pro1{
+  color: white;
+}
+
+
+/* orders */
+

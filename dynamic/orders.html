@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+ 
+</style>
+<h3 class="text-center" style="color: white;">Orders</h3>
+<div class="container orders_main" style="display: flex;justify-content: space-evenly;flex-wrap: wrap;margin-top: 2rem;">
+  
+  {% if data %}
+    {% for i in data %}
+    <div class="card" style="width: 20rem;margin-bottom: 2rem;">
+        <div class="card-header">
+          Name : {{i.user}}
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">products : {{i.products}}</li>
+          <li class="list-group-item">Amount : {{i.amount}}</li>
+          <li class="list-group-item">Payment method : {{i.pay_method}}</li>
+          <li class="list-group-item">Addrss : {{i.address}}</li>
+          <li class="list-group-item">Pin : {{i.Pin}}</li>
+          <li class="list-group-item">Mobile : {{i.mobile}}</li>
+          <li class="list-group-item">order_id : {{i.order_id}}</li>
+          <li class="list-group-item">Order date : {{i.o_date}}</li>
+          <li class="list-group-item">Delivery : {{i.d_date}}</li>
+          <!-- {% if flag == 1 %}
+          <li class="list-group-item">
+            <a href="cancelord/?idn={{i.id}}"><button class="btn btn-danger">Cancel</button></a>
+          </li>
+          {% elif flag == 2 %}
+          <li class="list-group-item">{{msg}}</li>
+          {% elif flag == 3 %}
+          <li class="list-group-item">{{msg}}</li>
+          {% endif %} -->
+        </ul>
+      </div>
+    {% endfor %}
+    {% else %}
+    <h3 style="color: white;">----- Empty -----</h3>
+    {% endif %}
+</div>
+
+
+
+
+{% endblock %}

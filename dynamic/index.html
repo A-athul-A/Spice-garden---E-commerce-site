@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<div class="containers">
+<div class="main">
+    <div class="banner">
+        <div class="banner-txt">
+        <h1>Welcome to the world of spices</h1>
+       
+    </div>
+    </div>
+</div>
+<div class="containers" style="margin-top: 7px;">
+    <div class="rows">
+        {% for i in data %}
+<div class="card" style="width: 14rem;margin-right: 50px;margin-bottom: 2rem;">
+    <img src="{{i.product_image.url}}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{i.product_name}}</h5>
+      <p class="card-text">Rs. {{i.product_price}} for {{i.gram_of_product}} grams</p>
+      <a href="view_product?idn={{i.id}}" class="btn btn-primary">View product</a>
+    </div>
+  </div>
+    
+  {% endfor %}
+</div>
+</div> 
+
+</div>
+<div class="site_footer" id="foot" style="height: 100%;">
+  
+  <div>🏠 Address
+    <div><br>
+      <p>56105 Bogisich Groves,<br> South Queenieport, CO 73239</p>
+    </div>
+  </div>
+    
+
+  <div> ☎️ Contact
+    <div><br>
+      <p>Ph : 0099-12583694</p>
+    </div>
+  </div>
+  
+
+  <div>🌐 Social media
+    <div><br>
+      <p><a href="https://fb.com">Facebook</a></p>
+      <p><a href="https://instagram.com">Instagram</a></p>
+      <p><a href="https://twitter.com">Twitter</a></p>
+    </div>
+  </div>
+  
+</div>
+{% endblock %}

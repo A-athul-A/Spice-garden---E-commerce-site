@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+
+{% if data %}
+    {% for i in data %}
+  <div class="de-main" style="display: flex;justify-content: space-evenly;margin-top: 5rem;">
+    
+
+    <div class="image-section">
+      <img src="{{i.product_image.url}}" alt="" style="width: 18rem;height: 24rem;"></td>
+    </div>
+    <div class="details" style="color: white;">
+      <h2>{{i.product_name}}</h2> <hr>
+      <div class="dec" style="width: 450px;"> 
+        <p>{{i.product_description}}</p> <hr>
+      </div>
+      
+      <h5>Rs {{i.product_price}} for {{i.gram_of_product}} grams</h5> <hr>
+      <h6> Stock : {{i.stock}}</h6> <hr>
+      <button class="btn btn-success" id="dt-btn"><a href="cart?idn={{i.id}}">Add to cart</a></button>
+      <button class="btn btn-primary"><a href="/">Go back</a></button>
+    </div>
+   
+    
+  </div>
+  {% endfor %}
+    {% else %}
+    <h3 style="color: white;text-align: center;">0 Results found</h3>
+    {% endif %}
+
+
+
+     <style>
+      hr{
+        color: white;
+      }
+       a{
+        text-decoration: none;
+        color: white;
+      }
+      img{
+        border-radius: 15px;
+      }
+     </style>
+
+
+{% endblock %}

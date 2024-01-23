@@ -1,0 +1,155 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<style>
+    article{
+  background: #ffffff;
+  background-color: rgb(104, 143, 252);
+  height: 200px;
+  display: none;
+}
+article.on{
+  display: block;
+}
+
+.pay{
+    background-color: rgb(104, 143, 252);
+    height: 530px;
+    width: 65rem;
+    margin: 2rem auto;
+    border-radius: 30px;
+}
+.inputfld{
+    width: 25rem;
+}
+.pack{
+    padding-top: 2rem;
+}
+.btn{
+    width: 10rem;
+}
+.pay-btn{
+    padding-top: 50px;
+}
+.alink{
+    text-decoration: none;
+    color: white;
+}
+</style>
+
+
+<!------------------------------>
+
+<div class="pay">
+<div class="head_section text-center" style="font-weight: 600;">
+  <!-- <p>{{items}}</p> -->
+<h4>Amount Rs. {{total}}</h4>
+<h6>Delivery on : {{del_date}}</h6>
+</div>
+ <!-- address section -->
+    <div class="pack">
+    <form action="{% url 'payment:success' %}" method="post">
+      {% csrf_token %}
+        <div style="display: flex;justify-content: space-evenly;">
+    <div class="addr-section">
+        <div class="d-flex flex-column">
+            <p class="text mb-1">Address</p>
+            <input class="form-control mb-3 inputfld" type="text" name="addr" value="">
+        </div>
+        <div class="d-flex flex-column">
+            <p class="text mb-1">Contact</p>
+            <input class="form-control mb-3 inputfld" type="number" name="mob" placeholder="9874563210" value="">
+        </div>
+        <div class="d-flex flex-column">
+            <p class="text mb-1">PIN</p>
+            <input class="form-control mb-3 inputfld" type="number" name="pn"  placeholder="632541" value="">
+        </div>
+    </div>
+
+<!-- payment details section  -->
+    <div class="pay-section">
+  <input type="radio" id="tab1" name="tab" checked value="card">
+  <label for="tab1">Cards</label>
+  <input type="radio" id="tab2" name="tab" value="UPI">
+  <label for="tab2">UPI</label>
+  <input type="radio" id="tab3" name="tab" value="cash_on_delivery">
+  <label for="tab3">Cash on delivery</label>
+
+  <!-- Cards -->
+  <article>
+    
+      <div class="d-flex flex-column">
+        <p class="text mb-1">Name</p>
+        <input class="form-control mb-3 inputfld" type="text" placeholder="" value="">
+    </div> 
+    
+    <div class="d-flex flex-column">
+        <p class="text mb-1">Card Number</p>
+        <input class="form-control mb-3 inputfld" type="text" placeholder="1234 5678 435678" value="">
+    </div>
+
+    <div class="d-flex flex-column">
+        <p class="text mb-1">Expiry date</p>
+        <input class="form-control mb-3 inputfld" type="text" placeholder="MM/YYYY" value="">
+    </div>
+
+    <div class="d-flex flex-column">
+        <p class="text mb-1">CVV/CVC</p>
+        <input class="form-control mb-3 inputfld" type="text" placeholder="********" value="">
+    </div>
+
+   <Button type="submit" class="btn btn-success">Pay</Button>
+   <Button type="submit" class="btn btn-success"><a href="{% url 'cartapp:cart_detail' %}" class="alink">Back to cart</a></Button>
+  </article>
+
+  <!-- UPI -->
+
+  <article>
+    <div class="d-flex flex-column">
+        <p class="text mb-1">UPI ID</p>
+        <input class="form-control mb-3 inputfld" type="text" placeholder="" value="">
+    </div>
+    <Button type="submit" class="btn btn-success">Pay</Button>
+    <Button type="submit" class="btn btn-success"><a href="{% url 'cartapp:cart_detail' %}" class="alink">Back to cart</a></Button>
+  </article>
+
+   <!-- cash on delivery -->
+  <article>
+    <div class="pay-btn">
+    <Button type="submit" class="btn btn-success">Pay</Button>
+    <Button type="submit" class="btn btn-success"><a href="{% url 'cartapp:cart_detail' %}" class="alink">Back to cart</a></Button>
+    </div>
+  </article>
+
+</form>
+</div>
+</div> 
+
+
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+
+  <script>
+    $('[name=tab]').each(function(i,d){
+  var p = $(this).prop('checked');
+//   console.log(p);
+  if(p){
+    $('article').eq(i)
+      .addClass('on');
+  }    
+});  
+
+$('[name=tab]').on('change', function(){
+  var p = $(this).prop('checked');
+  
+  // $(type).index(this) == nth-of-type
+  var i = $('[name=tab]').index(this);
+  
+  $('article').removeClass('on');
+  $('article').eq(i).addClass('on');
+});
+  </script>
+
+{% endblock %}
