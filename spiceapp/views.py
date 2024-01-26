@@ -3,6 +3,7 @@ from django.contrib import messages, auth
 from django.contrib.auth import login as authlogin,logout as authlogout, authenticate
 from django.contrib.auth.models import User
 from . models import product_tbl
+from cart.models import Direct_buy
 from django.db.models import Q
 
 # Create your views here.
@@ -51,6 +52,8 @@ def logout(request):
 def view_product(request):
     idn  = request.GET['idn']
     obj = product_tbl.objects.filter(id=idn)
+    obj2 = Direct_buy.objects.all()
+    obj2.delete()
     return render(request,"product_details.html",{"data":obj})
 
 

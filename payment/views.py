@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from cart.models import CartItem
+from cart.models import CartItem,Direct_buy
 import uuid
 from . models import Payment_details
 from datetime import date
@@ -38,33 +38,63 @@ else:
 # --------- payment section -------------
 
 def payment_opt(request):
-
-    obj = CartItem.objects.all()
-    totals = []
-    pro_quant = {}
-    for i in obj:  
-        totals.append(i.total)    
+    p = request.META.get('HTTP_REFERER')
+    if p == "http://127.0.0.1:8000/cart/buy_detail":
+        obj = Direct_buy.objects.all()
+        totals = []
+        pro_quant = {}
+        for i in obj:  
+            totals.append(i.total)    
               
-   
-    data = {"total":totals[-1],"items":pro_quant,"del_date":delivery_date}
 
-    return render(request,'payment.html',data)
+        data = {"total":totals[-1],"items":pro_quant,"del_date":delivery_date,"path":"direct"}
+        return render(request,'payment.html',data)
+    else:
+        obj = CartItem.objects.all()
+        totals = []
+        pro_quant = {}
+        for i in obj:  
+            totals.append(i.total)    
+        
+        data = {"total":totals[-1],"items":pro_quant,"del_date":delivery_date,"path":"cart"}
+        return render(request,'payment.html',data)
 
 
 
 
 def pay_success(request):
+    if request.method == "POST":
+        add = request.POST.get('addr')
+        mb = request.POST.get('mob')
+        pin = request.POST.get('pn')
+        meth = request.POST.get('tab')
+        p = request.POST.get('path')
+
+   
+    if p == "direct":
+        
+        obj = Direct_buy.objects.all()
+        totals = []
+        pro_quant = {}
+        for i in obj:
+            totals.append(i.total) 
+            print("b total ",totals)   
+            pro_quant[i.product.product_name] = i.quantity
+        total = totals[-1]
+        
+    else:
+        obj = CartItem.objects.all()
+        totals = []
+        pro_quant = {}
+        for i in obj:
+            totals.append(i.total)    
+            pro_quant[i.product.product_name] = i.quantity
+        total = totals[-1]
+
     users = request.user
     user = users.first_name
     unique_id = str(uuid.uuid4())
-    obj = CartItem.objects.all()
-    totals = []
-    pro_quant = {}
-    for i in obj:
-        totals.append(i.total)    
-        pro_quant[i.product.product_name] = i.quantity 
-
-    total = totals[-1]
+   
 
     if request.method == "POST":
         add = request.POST.get('addr')
